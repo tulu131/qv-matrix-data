@@ -1,0 +1,49 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+ 
+ <bean id="address1" class="com.sailendra.beanClasses.Address1">
+ 	<property name="houseNo">
+ 		<value>80</value>
+ 	</property>
+ 	<property name="streetName">
+ 		<value>Co-Operative Colony, Kalinga Vihar, Chhend Colony</value>
+ 	</property>
+ 	<property name="cityName">
+ 		<value>Rourkela</value>
+ 	</property>
+ 	<property name="districtName">
+ 		<value>Sundargarh</value>
+ 	</property>
+ 	<property name="stateName">
+ 		<value>Odisha</value>
+ 	</property>
+ 	<property name="countryName">
+ 		<value>India</value>
+ 	</property>
+ 	<property name="pinNo">
+ 		<value>769015</value>
+ 	</property>
+ </bean>
+ <bean id="emp2" class="com.sailendra.beanClasses.Employee2">
+ 	<property name="empId">
+ 		<value>100</value>
+ 	</property>
+ 	<property name="empName">
+ 		<value>Sailendra Narayan Jena</value>
+ 	</property>
+ 	<property name="empAge">
+ 		<value>32</value>
+ 	</property>
+ 	<property name="empEmailId">
+ 		<value>sailendra.n.jena@gmail.com</value>
+ 	</property>
+ 	<property name="mobNo">
+ 		<value>9731728407</value>
+ 	</property>
+ 	<property name="address1">
+ 		<ref bean="address1"/>
+ 	</property>
+ </bean>
+</beans>
