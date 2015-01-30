@@ -23,6 +23,44 @@ import com.sun.mail.pop3.POP3SSLStore;
  */
 public class GmailUtil
 {
+	
+	//SMTP Details
+	private static final String smtpAuthValues = PropUtil.getValues("smtpAuthValues");
+	private static final String smtpStarttlsValues = PropUtil.getValues("smtpStarttlsValues");
+	private static final String smtpHostValues = PropUtil.getValues("smtpHostValues");
+	private static final String smtpPortValues = PropUtil.getValues("smtpPortValues");
+	
+	private static final String smtpAuthKey =PropUtil.getValues( "smtpAuthKey");
+	private static final String smtpStarttlsKey = PropUtil.getValues("smtpStarttlsKey");
+	private static final String smtpHostKey =PropUtil.getValues("smtpHostKey");
+	private static final String smtpPortKey = PropUtil.getValues("smtpPortKey");
+	
+	//TLS Details
+	private static final String tlsAuthValues = smtpAuthValues;
+	private static final String tlsStarttlsValues = smtpStarttlsValues;
+	private static final String tlsHostValues = smtpHostValues;
+	private static final String tlsPortValues = PropUtil.getValues("tlsPort");
+	
+	private static final String tlsAuthKey = smtpAuthKey;
+	private static final String tlsStarttlsKey = smtpStarttlsKey;
+	private static final String tlsHostKey = smtpHostKey;
+	private static final String tlsPortKey = smtpPortKey;
+	
+	//SSL Details
+	private static final String sslHostValues = PropUtil.getValues("sslHostValues");
+	private static final String sslSocketFactoryPortValues = PropUtil.getValues("sslSocketFactoryPortValues");
+	private static final String sslSocketFactoryClassValues = PropUtil.getValues("sslSocketFactoryClassValues");
+	private static final String sslAuthValues = smtpAuthValues;
+	private static final String sslPortValues = PropUtil.getValues("sslPortValues");
+	
+	private static final String sslHostKey = smtpHostKey;
+	private static final String sslSocketFactoryPortKey = PropUtil.getValues("sslSocketFactoryPortKey");
+	private static final String sslSocketFactoryClassKey = PropUtil.getValues("sslSocketFactoryClassKey");
+	private static final String sslAuthKey = smtpAuthKey;
+	private static final String sslPortKey = smtpPortKey;
+	
+
+	//Mail Connection Details
 	private static Session session = null;
 	private static Store store = null;
 	private static String username = PropUtil.getValues("username");
@@ -33,23 +71,13 @@ public class GmailUtil
 	private static Properties props = null;
 	private static Message message = null;
 	
-	//SMTP Details
-	private static final String smtpAuthValues = PropUtil.getValues("mail.smtp.auth");
-	private static final String smtpStarttlsValues = PropUtil.getValues("mail.smtp.starttls.enable");
-	private static final String smtpHostValues = PropUtil.getValues("mail.smtp.host");
-	private static final String smtpPortValues = PropUtil.getValues("mail.smtp.port");
-	
-	private static final String smtpAuthKey = "mail.smtp.auth";
-	private static final String smtpStarttlsKey = "mail.smtp.starttls.enable";
-	private static final String smtpHostKey = "mail.smtp.host";
-	private static final String smtpPortKey = "mail.smtp.port";
-	
-	//TLS Details
+	private static final String socketFactory = sslSocketFactoryClassValues;
+
 	
 	//Getting Gmail Connection using this below method.
 	public static void connection()
 	{
-		String socketFactory = "javax.net.ssl.SSLSocketFactory";
+		
 		
 		Properties pop3Props = new Properties();
 		
@@ -159,13 +187,7 @@ public class GmailUtil
 		props.put(smtpHostKey, smtpHostValues);
 		props.put(smtpPortKey, smtpPortValues);
 		
-		session = Session.getInstance(props, new Authenticator()
-		{
-			protected PasswordAuthentication getPasswordAuthentication()
-			{
-				return new PasswordAuthentication(username, password);
-			}
-		});
+		session = getSession(props, username, password);
 		
 		try
 		{
@@ -186,9 +208,32 @@ public class GmailUtil
 	
 	//TODO
 	//Sending Mail Using TLS Server
-	public static void sentSingleMailTLS(String username, String password, String reciepentMail, String subjectLine, String textContent)
+	public static void sentSingleMailSSL(String username, String password, String reciepentMail, String subjectLine, String textContent)
 	{
+		props = new Properties();
+		props.put(sslHostKey, sslHostValues);
+		props.put(sslSocketFactoryPortKey, sslSocketFactoryPortValues);
+		props.put(sslSocketFactoryClassKey, sslSocketFactoryClassValues);
+		props.put(sslAuthKey, sslAuthValues);
+		props.put(sslPortKey, sslPortValues);
 		
+		session = getSession(props, username, password);
+		
+		try
+		{
+			message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(username));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(reciepentMail));
+			message.setSubject(subjectLine);
+			message.setText(textContent);
+			
+			Transport.send(message);
+			System.out.println("Message sent from SSL Port Successfully..........");
+		}
+		catch(MessagingException ex)
+		{
+			ex.printStackTrace();
+		}
 	}
 	
 	//Closing Folder which is already opened by User.
@@ -218,5 +263,25 @@ public class GmailUtil
 		}
 	}
 	
-	
+	//Getting mail Session Object using Properties class object and username, password.
+	public static Session getSession(Properties props, final String username, final String password)
+	{
+		session = Session.getDefaultInstance(props, new Authenticator()
+		{
+			protected PasswordAuthentication getPasswordAuthentication()
+			{
+				return new PasswordAuthentication(username, password);
+			}
+		});
+		
+		if (session != null)
+		{
+			System.out.println("Mail Session Object Created Successfully.....");
+			return session;
+		}
+		else
+		{
+			throw new RuntimeException("Mail Session Object Creation Failure....");
+		}
+	}
 }
