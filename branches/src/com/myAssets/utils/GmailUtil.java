@@ -60,7 +60,7 @@ public class GmailUtil
 	private static final String sslPortKey = smtpPortKey;
 	
 
-	//Mail Connection Details
+	//POP3 Mail Connection Details
 	private static Session session = null;
 	private static Store store = null;
 	private static String username = PropUtil.getValues("username");
@@ -71,7 +71,12 @@ public class GmailUtil
 	private static Properties props = null;
 	private static Message message = null;
 	
-	private static final String socketFactory = sslSocketFactoryClassValues;
+	private static final String pop3SocketFactoryClassValues = sslSocketFactoryClassValues;
+	private static final String pop3MailSocketfactoryClassKey = PropUtil.getValues("pop3MailSocketfactoryClassKey");
+	private static final String pop3MailSocketFactoryFallbackKey = PropUtil.getValues("pop3MailSocketFactoryFallbackKey");
+	private static final String pop3MailPortKey = PropUtil.getValues("pop3MailPortKey");
+	private static final String pop3MailSocketFactoryPortKey = PropUtil.getValues("pop3MailSocketFactoryPortKey");
+	
 
 	
 	//Getting Gmail Connection using this below method.
@@ -81,7 +86,7 @@ public class GmailUtil
 		
 		Properties pop3Props = new Properties();
 		
-		pop3Props.setProperty("mail.pop3.socketFactory.class", socketFactory);
+		pop3Props.setProperty("mail.pop3.socketFactory.class", pop3SocketFactoryClassValues);
 		pop3Props.setProperty("mail.pop3.socketFactory.fallback", "false");
 		pop3Props.setProperty("mail.pop3.port", "995");
 		pop3Props.setProperty("mail.pop3.socketFactory.port", "995");
