@@ -71,13 +71,15 @@ public class GmailUtil
 	private static Properties props = null;
 	private static Message message = null;
 	
-	private static final String pop3SocketFactoryClassValues = sslSocketFactoryClassValues;
 	private static final String pop3MailSocketfactoryClassKey = PropUtil.getValues("pop3MailSocketfactoryClassKey");
 	private static final String pop3MailSocketFactoryFallbackKey = PropUtil.getValues("pop3MailSocketFactoryFallbackKey");
 	private static final String pop3MailPortKey = PropUtil.getValues("pop3MailPortKey");
 	private static final String pop3MailSocketFactoryPortKey = PropUtil.getValues("pop3MailSocketFactoryPortKey");
 	
-
+	private static final String pop3SocketFactoryClassValues = sslSocketFactoryClassValues;
+	private static final String pop3MailSocketFactoryFallbackValues = PropUtil.getValues("pop3MailSocketFactoryFallbackValues");
+	private static final String pop3MailPortValues = PropUtil.getValues("pop3MailPortValues");
+	private static final String pop3MailSocketFactoryPortValues = PropUtil.getValues("pop3MailSocketFactoryPortValues");
 	
 	//Getting Gmail Connection using this below method.
 	public static void connection()
@@ -86,10 +88,10 @@ public class GmailUtil
 		
 		Properties pop3Props = new Properties();
 		
-		pop3Props.setProperty("mail.pop3.socketFactory.class", pop3SocketFactoryClassValues);
-		pop3Props.setProperty("mail.pop3.socketFactory.fallback", "false");
-		pop3Props.setProperty("mail.pop3.port", "995");
-		pop3Props.setProperty("mail.pop3.socketFactory.port", "995");
+		pop3Props.setProperty(pop3MailSocketfactoryClassKey, pop3SocketFactoryClassValues);
+		pop3Props.setProperty(pop3MailSocketFactoryFallbackKey, pop3MailSocketFactoryFallbackValues);
+		pop3Props.setProperty(pop3MailPortKey, pop3MailPortValues);
+		pop3Props.setProperty(pop3MailSocketFactoryPortKey, pop3MailSocketFactoryPortValues);
 		
 		URLName url = new URLName("pop3", "pop.gmail.com", 995, "", username, password);
 		
@@ -107,9 +109,35 @@ public class GmailUtil
 		}
 	}
 	
-	//Opening particular folder which user want to open inside Gmail Account.
-	public static void openFolder(String folderName)
+	public static void getMailConnetion(String username, String password)
 	{
+		Properties pop3Props = new Properties();
+		
+		pop3Props.setProperty(pop3MailSocketfactoryClassKey, pop3SocketFactoryClassValues);
+		pop3Props.setProperty(pop3MailSocketFactoryFallbackKey, pop3MailSocketFactoryFallbackValues);
+		pop3Props.setProperty(pop3MailPortKey, pop3MailPortValues);
+		pop3Props.setProperty(pop3MailSocketFactoryPortKey, pop3MailSocketFactoryPortValues);
+		
+		URLName url = new URLName("pop3", "pop.gmail.com", 995, "", username, password);
+		
+		session = Session.getInstance(pop3Props, null);
+		store = new POP3SSLStore(session, url);
+		
+		try
+		{
+			store.connect();
+			System.out.println("Gmail Connection Successfull...........");
+		}
+		catch(MessagingException ex)
+		{
+			ex.printStackTrace();
+		}
+		
+	}
+	//Opening particular folder which user want to open inside Gmail Account.
+	public static void openFolder(String username, String password, String folderName)
+	{
+		getMailConnetion(username, password);
 		try
 		{
 			folder = store.getDefaultFolder();
