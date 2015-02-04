@@ -34,17 +34,7 @@ public class GmailUtil
 	private static final String smtpStarttlsKey = PropUtil.getValues("smtpStarttlsKey");
 	private static final String smtpHostKey =PropUtil.getValues("smtpHostKey");
 	private static final String smtpPortKey = PropUtil.getValues("smtpPortKey");
-	
-	//TLS Details
-	private static final String tlsAuthValues = smtpAuthValues;
-	private static final String tlsStarttlsValues = smtpStarttlsValues;
-	private static final String tlsHostValues = smtpHostValues;
-	private static final String tlsPortValues = PropUtil.getValues("tlsPort");
-	
-	private static final String tlsAuthKey = smtpAuthKey;
-	private static final String tlsStarttlsKey = smtpStarttlsKey;
-	private static final String tlsHostKey = smtpHostKey;
-	private static final String tlsPortKey = smtpPortKey;
+
 	
 	//SSL Details
 	private static final String sslHostValues = PropUtil.getValues("sslHostValues");
@@ -239,8 +229,8 @@ public class GmailUtil
 		}
 	}
 	
-	//TODO
-	//Sending Mail Using TLS Server
+
+	//Sending Mail Using SSL Server
 	public static void sentSingleMailSSL(String username, String password, String reciepentMail, String subjectLine, String textContent)
 	{
 		props = new Properties();
