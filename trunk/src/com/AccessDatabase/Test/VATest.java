@@ -32,7 +32,7 @@ public class VATest
 			System.out.println(json.getName()+" , "+status.getName()+" & "+backup.getName()+" already exist in that location.....");
 		}
 		
-		BufferedReader brReader = new BufferedReader(new FileReader("src/com/myAssets/resources/DumpSample.txt"));
+		BufferedReader brReader = new BufferedReader(new FileReader("D:/DumpSample.txt"));
 		//File file = new File("D:\\testlog.log");
 		FileWriter writer = new FileWriter(status, true);
 		if (!status.exists())
