@@ -1,6 +1,10 @@
 package com.AccessDatabase.Test;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -27,5 +31,28 @@ public class VATest
 		{
 			System.out.println(json.getName()+" , "+status.getName()+" & "+backup.getName()+" already exist in that location.....");
 		}
+		
+		BufferedReader brReader = new BufferedReader(new FileReader("src/com/myAssets/resources/DumpSample.txt"));
+		//File file = new File("D:\\testlog.log");
+		FileWriter writer = new FileWriter(status, true);
+		if (!status.exists())
+		{
+			status.createNewFile();
+		}
+		BufferedWriter brWriter = new BufferedWriter(writer);
+		
+		String line = null;
+		
+		while ((line = brReader.readLine()) != null)
+		{
+			System.out.println(line);
+			brWriter.write(line);
+			brWriter.newLine();
+		}
+		brReader.close();
+		brWriter.close();
+		
+		System.out.println("File written Successfully.........");
+	
 	}
 }
