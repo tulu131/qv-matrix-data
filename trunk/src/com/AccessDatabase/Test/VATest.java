@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 
 public class VATest
@@ -15,10 +16,13 @@ public class VATest
 	public static void main(String[] args) throws IOException
 	{
 		String timeStamp = new SimpleDateFormat("ddMMMyyyy").format(Calendar.getInstance().getTime());
+		String month = new SimpleDateFormat("MMMM").format(new Date(Calendar.getInstance().getTimeInMillis()));
+		String year = new SimpleDateFormat("yyyy").format(new Date(Calendar.getInstance().getTimeInMillis()));
 		
-		File json = new File("D:\\Dump Folders\\2015 Dump\\February\\"+timeStamp+"\\JSON");
-		File status = new File("D:\\Dump Folders\\2015 Dump\\February\\"+timeStamp+"\\Test Cases Status.txt");
-		File backup = new File("D:\\Dump Folders\\2015 Dump\\February\\"+timeStamp+"\\BackUp Dumps");
+		
+		File json = new File("D:\\Dump Folders\\"+year+" Dump\\"+month+"\\"+timeStamp+"\\JSON");
+		File status = new File("D:\\Dump Folders\\"+year+" Dump\\"+month+"\\"+timeStamp+"\\Test Cases Status.txt");
+		File backup = new File("D:\\Dump Folders\\"+year+" Dump\\"+month+"\\"+timeStamp+"\\BackUp Dumps");
 		
 		if (!json.exists() && !status.exists() && !backup.exists())
 		{
