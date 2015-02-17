@@ -7,6 +7,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class Test
 {
@@ -36,26 +39,34 @@ public class Test
 //			ex.printStackTrace();
 //		}
 		
-		BufferedReader brReader = new BufferedReader(new FileReader("src/com/myAssets/resources/DumpSample.txt"));
-		File file = new File("D:\\testlog.log");
-		FileWriter writer = new FileWriter(file, true);
-		if (!file.exists())
-		{
-			file.createNewFile();
-		}
-		BufferedWriter brWriter = new BufferedWriter(writer);
+//		BufferedReader brReader = new BufferedReader(new FileReader("src/com/myAssets/resources/DumpSample.txt"));
+//		File file = new File("D:\\testlog.log");
+//		FileWriter writer = new FileWriter(file, true);
+//		if (!file.exists())
+//		{
+//			file.createNewFile();
+//		}
+//		BufferedWriter brWriter = new BufferedWriter(writer);
+//		
+//		String line = null;
+//		
+//		while ((line = brReader.readLine()) != null)
+//		{
+//			System.out.println(line);
+//			brWriter.write(line);
+//			brWriter.newLine();
+//		}
+//		brReader.close();
+//		brWriter.close();
+//		
+//		System.out.println("File written Successfully.........");
 		
-		String line = null;
 		
-		while ((line = brReader.readLine()) != null)
-		{
-			System.out.println(line);
-			brWriter.write(line);
-			brWriter.newLine();
-		}
-		brReader.close();
-		brWriter.close();
 		
-		System.out.println("File written Successfully.........");
+		String month = new SimpleDateFormat("MMMM").format(new Date(Calendar.getInstance().getTimeInMillis()));
+		String year = new SimpleDateFormat("yyyy").format(new Date(Calendar.getInstance().getTimeInMillis()));
+		
+		System.out.println(month);
+		System.out.println(year);
 	}
 }
