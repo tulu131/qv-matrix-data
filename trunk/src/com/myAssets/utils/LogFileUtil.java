@@ -1,11 +1,16 @@
 package com.myAssets.utils;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 public class LogFileUtil
 {
 	private static Logger log = Logger.getLogger("LogFileUtil");
 	
+	static
+	{
+		PropertyConfigurator.configure("src/com/myAssets/resources/log4j.properties");
+	}
 	private LogFileUtil()
 	{
 		

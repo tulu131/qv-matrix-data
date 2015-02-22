@@ -177,10 +177,15 @@ public class GmailUtil
 			{
 				message = messages[i];
 				System.out.println("-----------------------------------------------------------------");
+				LogFileUtil.infoMsg("-----------------------------------------------------------------");
 				System.out.println("Email No: "+(i+1));
+				LogFileUtil.infoMsg("Email No: "+(i+1));
 				System.out.println("Subject: "+message.getSubject());
+				LogFileUtil.infoMsg("Subject: "+message.getSubject());
 				System.out.println("From: "+message.getFrom());
+				LogFileUtil.infoMsg("From: "+message.getFrom());
 				System.out.println("Text: "+message.getContent().toString());
+				LogFileUtil.infoMsg("Text: "+message.getContent().toString());
 			}
 			
 			//Close Store and Folder Reesources
