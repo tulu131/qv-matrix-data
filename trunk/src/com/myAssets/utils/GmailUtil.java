@@ -65,11 +65,17 @@ public class GmailUtil
 	private static final String pop3MailSocketFactoryFallbackKey = PropUtil.getValues("pop3MailSocketFactoryFallbackKey");
 	private static final String pop3MailPortKey = PropUtil.getValues("pop3MailPortKey");
 	private static final String pop3MailSocketFactoryPortKey = PropUtil.getValues("pop3MailSocketFactoryPortKey");
+	private static final String pop3HostKey = PropUtil.getValues("pop3HostKey");
+	private static final String pop3PortKey = PropUtil.getValues("pop3PortKey");
+	private static final String pop3StarttlsKey = PropUtil.getValues("pop3StarttlsKey");
 	
 	private static final String pop3SocketFactoryClassValues = sslSocketFactoryClassValues;
 	private static final String pop3MailSocketFactoryFallbackValues = PropUtil.getValues("pop3MailSocketFactoryFallbackValues");
 	private static final String pop3MailPortValues = PropUtil.getValues("pop3MailPortValues");
 	private static final String pop3MailSocketFactoryPortValues = PropUtil.getValues("pop3MailSocketFactoryPortValues");
+	private static final String pop3HostValue = host;
+	private static final String pop3PortValue = pop3MailPortValues;
+	private static final String pop3StarttlsValue = PropUtil.getValues("pop3StarttlsValue");
 	
 	//Getting Gmail Connection using this below method.
 	public static void connection()
@@ -138,7 +144,7 @@ public class GmailUtil
 				throw new Exception("Invalid Folder Name.");
 			}
 			
-			folder.open(folder.READ_WRITE);
+			folder.open(Folder.READ_WRITE);
 			System.out.println("Folder is open Successfully........");
 		} 
 		catch (MessagingException ex)
@@ -157,9 +163,9 @@ public class GmailUtil
 		try
 		{
 			props = new Properties();
-			props.put("mail.pop3.host", host);
-			props.put("mail.pop3.port", "995");
-			props.put("mail.pop3.starttls.enable", "true");
+			props.put(pop3HostKey, pop3HostValue);
+			props.put(pop3PortKey, pop3PortValue);
+			props.put(pop3StarttlsKey, pop3StarttlsValue);
 			
 			
 			session = Session.getDefaultInstance(props);
