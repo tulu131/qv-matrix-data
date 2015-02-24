@@ -11,6 +11,7 @@ public class LogFileUtil
 	{
 		PropertyConfigurator.configure("src/com/myAssets/resources/log4j.properties");
 	}
+	
 	private LogFileUtil()
 	{
 		
