@@ -20,21 +20,17 @@ import javax.mail.internet.MimeMultipart;
 import com.myAssets.utils.LogFileUtil;
 import com.myAssets.utils.PropUtil;
 
-import com.myAssets.utils.GmailUtil;
 
 public class Test
 {
 	public static void main(String[] args) 
 	{
 		String to = PropUtil.getValues("username");
-		String username = "sailendra.n.jena@gmail.com";
-		String password = "shreemaa131";
-		String folderName = "INBOX";
 		
 		String from = PropUtil.getValues("username");
 		
-	      final String username1 = "sailendra.n.jena@gmail.com";//change accordingly
-	      final String password1 = PropUtil.getValues("password");//change accordingly
+	      final String username = "sailendra.n.jena@gmail.com";//change accordingly
+	      final String password = PropUtil.getValues("password");//change accordingly
 
 	      // Assuming you are sending email through relay.jangosmtp.net
 	      String host = "smtp.gmail.com";
@@ -49,7 +45,7 @@ public class Test
 	      Session session = Session.getInstance(props,
 	         new javax.mail.Authenticator() {
 	            protected PasswordAuthentication getPasswordAuthentication() {
-	               return new PasswordAuthentication(username1, password1);
+	               return new PasswordAuthentication(username, password);
 	            }
 	         });
 
