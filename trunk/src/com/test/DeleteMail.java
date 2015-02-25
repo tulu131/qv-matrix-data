@@ -13,6 +13,10 @@ import javax.mail.NoSuchProviderException;
 import javax.mail.Session;
 import javax.mail.Store;
 
+/**
+ * @author Sailendra.Jena
+ *
+ */
 public class DeleteMail
 {
 	public static void delete(String pop3Host, String storeType, String username, String password)

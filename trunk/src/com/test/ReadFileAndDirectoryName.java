@@ -3,6 +3,10 @@ package com.test;
 import java.io.File;
 import java.util.Iterator;
 
+/**
+ * @author Sailendra.Jena
+ *
+ */
 public class ReadFileAndDirectoryName
 {
 	public void listFilesFolders(String directoryName)
