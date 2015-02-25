@@ -60,6 +60,7 @@ public class GmailUtil
 	private static String storeType = PropUtil.getValues("mailStoreType");
 	private static Properties props = null;
 	private static Message message = null;
+	private static URLName urlName = null;
 	
 	private static final String pop3MailSocketfactoryClassKey = PropUtil.getValues("pop3MailSocketfactoryClassKey");
 	private static final String pop3MailSocketFactoryFallbackKey = PropUtil.getValues("pop3MailSocketFactoryFallbackKey");
@@ -82,16 +83,16 @@ public class GmailUtil
 	{
 		
 		
-		Properties pop3Props = new Properties();
+		props = new Properties();
 		
-		pop3Props.setProperty(pop3MailSocketfactoryClassKey, pop3SocketFactoryClassValues);
-		pop3Props.setProperty(pop3MailSocketFactoryFallbackKey, pop3MailSocketFactoryFallbackValues);
-		pop3Props.setProperty(pop3MailPortKey, pop3MailPortValues);
-		pop3Props.setProperty(pop3MailSocketFactoryPortKey, pop3MailSocketFactoryPortValues);
+		props.setProperty(pop3MailSocketfactoryClassKey, pop3SocketFactoryClassValues);
+		props.setProperty(pop3MailSocketFactoryFallbackKey, pop3MailSocketFactoryFallbackValues);
+		props.setProperty(pop3MailPortKey, pop3MailPortValues);
+		props.setProperty(pop3MailSocketFactoryPortKey, pop3MailSocketFactoryPortValues);
 		
 		URLName url = new URLName("pop3", "pop.gmail.com", 995, "", username, password);
 		
-		session = Session.getInstance(pop3Props, null);
+		session = getPop3Session(props, null);//Session.getInstance(pop3Props, null);
 		store = new POP3SSLStore(session, url);
 		
 		try
@@ -107,17 +108,19 @@ public class GmailUtil
 	
 	public static void getMailConnetion(String username, String password)
 	{
-		Properties pop3Props = new Properties();
+		props = new Properties();
 		
-		pop3Props.setProperty(pop3MailSocketfactoryClassKey, pop3SocketFactoryClassValues);
-		pop3Props.setProperty(pop3MailSocketFactoryFallbackKey, pop3MailSocketFactoryFallbackValues);
-		pop3Props.setProperty(pop3MailPortKey, pop3MailPortValues);
-		pop3Props.setProperty(pop3MailSocketFactoryPortKey, pop3MailSocketFactoryPortValues);
+		props.setProperty(pop3MailSocketfactoryClassKey, pop3SocketFactoryClassValues);
+		props.setProperty(pop3MailSocketFactoryFallbackKey, pop3MailSocketFactoryFallbackValues);
+		props.setProperty(pop3MailPortKey, pop3MailPortValues);
+		props.setProperty(pop3MailSocketFactoryPortKey, pop3MailSocketFactoryPortValues);
 		
-		URLName url = new URLName("pop3", "pop.gmail.com", 995, "", username, password);
+		int port = Integer.parseInt(pop3MailPortValues);
 		
-		session = Session.getInstance(pop3Props, null);
-		store = new POP3SSLStore(session, url);
+		urlName = new URLName("pop3", host, port, "", username, password);
+		
+		session = getPop3Session(props, null);//Session.getInstance(pop3Props, null);
+		store = new POP3SSLStore(session, urlName);
 		
 		try
 		{
@@ -317,5 +320,11 @@ public class GmailUtil
 		{
 			throw new RuntimeException("Mail Session Object Creation Failure....");
 		}
+	}
+	
+	public static Session getPop3Session(Properties props, Authenticator authenticate)
+	{
+		session = Session.getInstance(props, authenticate);
+		return session;
 	}
 }
