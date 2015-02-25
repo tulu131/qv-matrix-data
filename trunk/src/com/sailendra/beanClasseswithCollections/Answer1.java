@@ -2,6 +2,10 @@ package com.sailendra.beanClasseswithCollections;
 
 import java.util.Date;
 
+/**
+ * @author Sailendra.Jena
+ *
+ */
 public class Answer1
 {
 	private int id;

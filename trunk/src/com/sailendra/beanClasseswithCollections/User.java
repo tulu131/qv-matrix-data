@@ -1,5 +1,9 @@
 package com.sailendra.beanClasseswithCollections;
 
+/**
+ * @author Sailendra.Jena
+ *
+ */
 public class User
 {
 	private int id;

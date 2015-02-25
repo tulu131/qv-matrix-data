@@ -1,5 +1,9 @@
 package com.sailendra.beanClasseswithCollections;
 
+/**
+ * @author Sailendra.Jena
+ *
+ */
 public class Answers
 {
 	private int id;

@@ -3,6 +3,10 @@ package com.sailendra.beanClasseswithCollections;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * @author Sailendra.Jena
+ *
+ */
 public class Questions
 {
 	private int id;
