@@ -5,6 +5,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.sailendra.inheritingBeanClasses.Employee;
 
+/**
+ * @author Sailendra.Jena
+ *
+ */
 public class TestInheritingEmployee
 {
 	public static void main(String[] args)

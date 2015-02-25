@@ -1,5 +1,9 @@
 package com.sailendra.inheritingBeanClasses;
 
+/**
+ * @author Sailendra.Jena
+ *
+ */
 public class Employee
 {
 	private int id;

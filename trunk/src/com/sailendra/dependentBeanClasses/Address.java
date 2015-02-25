@@ -1,5 +1,9 @@
 package com.sailendra.dependentBeanClasses;
 
+/**
+ * @author Sailendra.Jena
+ *
+ */
 public class Address
 {
 	private String city;

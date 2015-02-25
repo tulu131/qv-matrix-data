@@ -7,6 +7,10 @@ import org.springframework.core.io.Resource;
 
 import com.sailendra.dependentBeanClasses.Employee;
 
+/**
+ * @author Sailendra.Jena
+ *
+ */
 public class TestEmployeeDepedentObject
 {
 	public static void main(String[] args)

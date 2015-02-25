@@ -7,6 +7,10 @@ import org.springframework.core.io.Resource;
 
 import com.sailendra.beanClasses.Person2;
 
+/**
+ * @author Sailendra.Jena
+ *
+ */
 public class TestPerson2
 {
 	public static void main(String[] args)

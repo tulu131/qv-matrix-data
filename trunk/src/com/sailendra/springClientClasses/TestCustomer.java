@@ -5,6 +5,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.sailendra.beanClasses.Customer;
 
+/**
+ * @author Sailendra.Jena
+ *
+ */
 public class TestCustomer
 {
 	public static void main(String[] args)
