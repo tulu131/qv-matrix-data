@@ -6,6 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * @author Sailendra.Jena
+ *
+ */
 public class JDBCUtil
 {
 	static

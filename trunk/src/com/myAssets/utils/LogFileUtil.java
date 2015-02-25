@@ -3,6 +3,10 @@ package com.myAssets.utils;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
+/**
+ * @author Sailendra.Jena
+ *
+ */
 public class LogFileUtil
 {
 	private static Logger log = Logger.getLogger("LogFileUtil");
