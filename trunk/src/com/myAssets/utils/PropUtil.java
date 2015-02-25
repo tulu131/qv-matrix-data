@@ -41,9 +41,4 @@ public class PropUtil
 		
 		return value;
 	}
-	public static void main(String[] args) throws IOException
-	{
-		String values = PropUtil.getValues("username");
-		System.out.println(values);
-	}
 }
