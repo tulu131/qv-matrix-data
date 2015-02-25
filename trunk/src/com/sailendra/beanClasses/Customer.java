@@ -1,5 +1,9 @@
 package com.sailendra.beanClasses;
 
+/**
+ * @author Sailendra.Jena
+ *
+ */
 public class Customer
 {
 	private String name;

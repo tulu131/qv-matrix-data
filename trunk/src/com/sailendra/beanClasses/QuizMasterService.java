@@ -1,5 +1,9 @@
 package com.sailendra.beanClasses;
 
+/**
+ * @author Sailendra.Jena
+ *
+ */
 public class QuizMasterService
 {
 //	private QuizMaster quizMaster = new SpringQuizMaster();
