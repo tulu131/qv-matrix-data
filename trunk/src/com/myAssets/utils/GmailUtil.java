@@ -74,7 +74,7 @@ public class GmailUtil
 	private static final String pop3MailSocketFactoryFallbackValues = PropUtil.getValues("pop3MailSocketFactoryFallbackValues");
 	private static final String pop3MailPortValues = PropUtil.getValues("pop3MailPortValues");
 	private static final String pop3MailSocketFactoryPortValues = PropUtil.getValues("pop3MailSocketFactoryPortValues");
-	private static final String pop3HostValue = host;
+	private static final String pop3HostValue = PropUtil.getValues("host");
 	private static final String pop3PortValue = pop3MailPortValues;
 	private static final String pop3StarttlsValue = PropUtil.getValues("pop3StarttlsValue");
 	
@@ -326,5 +326,11 @@ public class GmailUtil
 	{
 		session = Session.getInstance(props, authenticate);
 		return session;
+	}
+	
+	public static void attachOneFileMail(String username, String password, String reciepentMail, String attachedFilePath)
+	{
+		props = new Properties();
+		
 	}
 }
