@@ -1,0 +1,52 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+ 
+	<bean id="CustomerBean" class="com.sailendra.beanClasses.Customer">
+ 
+		<constructor-arg>
+			<value>mkyong</value>
+		</constructor-arg>
+ 
+		<constructor-arg>
+			<value>188</value>
+		</constructor-arg>
+ 
+		<constructor-arg>
+			<value>28</value>
+		</constructor-arg>
+        </bean>
+        
+        <bean id="emp" class="com.sailendra.inheritingBeanClasses.Employee">
+        	<constructor-arg type="int">
+        		 <value>100</value>
+        	</constructor-arg>
+        	<constructor-arg type="java.lang.String">
+        		<value>Sailendra Narayan Jena</value>
+        	</constructor-arg>
+        </bean>
+        <bean id="add" class="com.sailendra.inheritingBeanClasses.Address">
+        	<constructor-arg type="java.lang.String">
+        		<value>Kalinga Vihar</value>
+        	</constructor-arg>
+        	<constructor-arg type="java.lang.String">
+        		<value>Rourkela</value>
+        	</constructor-arg>
+        	<constructor-arg type="java.lang.String">
+        		<value>Sundargarh</value>
+        	</constructor-arg>
+        	<constructor-arg type="java.lang.String">
+        		<value>Odisha</value>
+        	</constructor-arg>
+        	<constructor-arg type="java.lang.String">
+        		<value>India</value>
+        	</constructor-arg>
+        </bean>
+        <bean id="emp1" class="com.sailendra.inheritingBeanClasses.Employee" parent="emp">
+        	<constructor-arg>
+        		<ref bean="add"/>
+        	</constructor-arg>
+        </bean>
+ 
+</beans>

@@ -1,0 +1,26 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+ 
+ <bean id="person1" class="com.sailendra.beanClasses.Person1">
+ 	<property name="pId">
+ 		<value>100</value>
+ 	</property>
+ 	<property name="name">
+ 		<value>Sailendra Narayan Jena</value>
+ 	</property>
+ 	<property name="age">
+ 		<value>32</value>
+ 	</property>
+ 	<property name="emailId">
+ 		<value>Sailendra.n.jena@gmail.com</value>
+ 	</property>
+ 	<property name="mobNo">
+ 		<value>9731728407</value>
+ 	</property>
+ 	<property name="pinNo">
+ 		<value>769015</value>
+ 	</property>
+ </bean>
+</beans>
