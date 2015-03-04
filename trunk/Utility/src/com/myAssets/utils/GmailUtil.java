@@ -2,10 +2,15 @@ package com.myAssets.utils;
 
 import java.util.Properties;
 
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
 import javax.mail.Authenticator;
+import javax.mail.BodyPart;
 import javax.mail.Folder;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.Multipart;
 import javax.mail.NoSuchProviderException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
@@ -13,7 +18,9 @@ import javax.mail.Store;
 import javax.mail.Transport;
 import javax.mail.URLName;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 import com.sun.mail.pop3.POP3SSLStore;
 
@@ -61,6 +68,10 @@ public class GmailUtil
 	private static Properties props = null;
 	private static Message message = null;
 	private static URLName urlName = null;
+	private static BodyPart messageBodyPart = null;
+	private static Multipart multipart = null;
+	private static DataSource dataSource = null;
+	
 	
 	private static final String pop3MailSocketfactoryClassKey = PropUtil.getValues("pop3MailSocketfactoryClassKey");
 	private static final String pop3MailSocketFactoryFallbackKey = PropUtil.getValues("pop3MailSocketFactoryFallbackKey");
@@ -77,6 +88,14 @@ public class GmailUtil
 	private static final String pop3HostValue = PropUtil.getValues("host");
 	private static final String pop3PortValue = pop3MailPortValues;
 	private static final String pop3StarttlsValue = PropUtil.getValues("pop3StarttlsValue");
+
+	//OutSide Mail Resources Details
+	private static final String subjectLineOut = PropOutUtil.getValues("subjectLine");
+	private static final String contentLineOut = PropOutUtil.getValues("contentLine");
+	private static final String usernameOut = PropOutUtil.getValues("username");
+	private static final String passwordOut = PropOutUtil.getValues("password");
+	private static final String attachedFilePath = PropOutUtil.getValues("attachedFilePath");
+	private static final String reciepentMail = PropOutUtil.getValues("reciepentMail");
 	
 	//Getting Gmail Connection using this below method.
 	public static void connection()
@@ -328,9 +347,64 @@ public class GmailUtil
 		return session;
 	}
 	
-	public static void attachOneFileMail(String username, String password, String reciepentMail, String attachedFilePath)
+	public static void attachOneFileMail()
 	{
+		
 		props = new Properties();
+		
+		props.put(smtpAuthKey, smtpAuthValues);
+		props.put(smtpStarttlsKey, smtpStarttlsValues);
+		props.put(smtpHostKey, smtpHostValues);
+		props.put(smtpPortKey, smtpPortValues);
+		
+		session = getSession(props, usernameOut, passwordOut);
+		
+		
+		try
+		{
+			//Create a Default Mime Message Object
+			message = new MimeMessage(session);
+			
+			//Set From: header field of the header
+			message.setFrom(new InternetAddress(usernameOut));
+			
+			//Set To: header field of the header
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(reciepentMail));
+			
+			//Set Subject: header field
+			message.setSubject(subjectLineOut);
+			
+			// Create the message part
+			messageBodyPart = new MimeBodyPart();
+			
+			// Now set the actual message
+			messageBodyPart.setText(contentLineOut);
+			
+			// Create a multipar message
+			multipart = new MimeMultipart();
+			
+			// Set text message part
+			multipart.addBodyPart(messageBodyPart);
+			
+			// Part two is attachment
+			messageBodyPart = new MimeBodyPart();
+			dataSource = new FileDataSource(attachedFilePath);
+			messageBodyPart.setDataHandler(new DataHandler(dataSource));
+			messageBodyPart.setFileName(attachedFilePath);
+			multipart.addBodyPart(messageBodyPart);
+			
+			// Send the complete message parts
+			message.setContent(multipart);
+			
+			// Send message
+			Transport.send(message);
+			
+			System.out.println("Sent message successfully....");
+		}
+		catch(MessagingException ex)
+		{
+			throw new RuntimeException(ex);
+		}
 		
 	}
 }
