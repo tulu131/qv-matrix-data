@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="Spring-App">
+    <wb-module deploy-name="Utililty">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="Spring-App"/>
-        <property name="java-output-path" value="/Spring-App/build/classes"/>
+        <property name="java-output-path" value="/Utililty/build/classes"/>
+        <property name="context-root" value="Utililty"/>
     </wb-module>
 </project-modules>
