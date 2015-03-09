@@ -1,5 +1,8 @@
 package com.AccessDatabase.Test;
 
+import com.myAssets.utils.GmailUtil;
+import com.myAssets.utils.PropOutUtil;
+
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -71,6 +74,7 @@ public class Test
 	
 	public static void main(String[] args) 
 	{
+		GmailUtil.attachOneFileMail();
 		String messageBody = PropOutUtil.getValues("contentLine");
 		boolean status = send(messageBody);
 		
