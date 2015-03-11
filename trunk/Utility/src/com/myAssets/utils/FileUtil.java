@@ -17,7 +17,9 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Sailendra.Jena
@@ -45,6 +47,31 @@ public class FileUtil
 	private static OutputStream output = null;
 	private static InputStreamReader inputReader = null;
 	private static OutputStreamWriter outputWriter = null;
+	
+	private static List<String> list = null;
+	private static String line = null;
+	
+	public static List<String>  getMailLists()
+	{
+		file = new File("D:/mailLists.txt");
+		list = new ArrayList<String>();
+		try
+		{
+			fileReader = new FileReader(file);
+			buffer = new BufferedReader(fileReader);
+			
+			while ((line = buffer.readLine()) != null)
+			{
+				list.add(line);
+			}
+		}
+		catch(IOException ex)
+		{
+			ex.printStackTrace();
+		}
+		
+		return list;
+	}
 	
 	public static void fileExtension(File srcFile)
 	{
