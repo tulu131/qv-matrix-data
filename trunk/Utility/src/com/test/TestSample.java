@@ -1,12 +1,13 @@
 package com.test;
 
-import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Properties;
+
+import com.myAssets.utils.PropUtil;
+
 
 /**
  * @author Sailendra.Jena
@@ -16,17 +17,14 @@ public class TestSample
 {
 	public static void main(String[] args) throws IOException
 	{
-		File file = new File("D:/mailLists.txt");
-		BufferedReader br = new BufferedReader(new FileReader(file));
+		FileInputStream fis = new FileInputStream(new File("src\\com\\myAssets\\resources\\config.properties"));
+		Properties props = new Properties();
+		props.load(fis);
 		
-		String line = null;
-		List<String> list = new ArrayList<String>();
-		while ((line = br.readLine()) != null)
-		{
-			
-			list.add(line);
-		}
+		System.out.println("Properties File Loaded Successfully.............");
 		
-		System.out.println(list);
+		Properties prop = new Properties();
+		String smtpAuthValues = prop.getProperty("smtpAuthValues");
+		System.out.println(smtpAuthValues);
 	}
 }
