@@ -18,6 +18,7 @@ public class PropUtil
 	public static FileInputStream fileInput = null;
 	public static Properties props = null;
 
+
 	
 	static
 	{
@@ -39,15 +40,12 @@ public class PropUtil
 		}
 
 	}
+	
 	public static String getValues(String key)
 	{
-		Properties props = new Properties();
-		String value = props.getProperty("smtpAuthValues");
-		
+		String value = props.getProperty(key);
 		return value;
 	}
-
-	
 
 	//SMTP Details
 	private static final String smtpAuthValues = getValues("smtpAuthValues");
@@ -60,22 +58,12 @@ public class PropUtil
 	private static final String smtpHostKey = getValues("smtpHostKey");
 	private static final String smtpPortKey = getValues("smtpPortKey");
 
-
-	
 	
 	public static Properties getSMTPProps()
 	{
-		props = System.getProperties();
-		props.put(smtpAuthKey, smtpAuthValues);
-		props.put(smtpStarttlsKey, smtpStarttlsValues);
-		props.put(smtpHostKey, smtpHostValues);
-		props.put(smtpPortKey, smtpPortValues);
 		
 		return props;
 	}
 
-	public static void main(String[] args)
-	{
-		System.out.println(smtpHostKey);
-	}
+
 }
