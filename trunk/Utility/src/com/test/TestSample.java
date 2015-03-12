@@ -1,30 +1,101 @@
 package com.test;
 
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 import com.myAssets.utils.PropUtil;
-
 
 /**
  * @author Sailendra.Jena
  *
  */
+
+class Tested
+{
+	private static Properties props = null;
+	private static InputStream input = null;
+	
+	static
+	{
+		props = new  Properties();
+		
+		try
+		{
+			input = new FileInputStream("src/com/myAssets/resources/config.properties");
+			props.load(input);
+		}
+		catch(IOException ex)
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			if (input != null)
+			{
+				try
+				{
+					input.close();
+				}
+				catch(IOException ex)
+				{
+					ex.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	public static String getValues(String key)
+	{
+//		props = new Properties();
+		
+		String values = props.getProperty(key);
+		
+		return values;
+	}
+}
 public class TestSample
 {
-	public static void main(String[] args) throws IOException
+	public static void main(String[] args)
 	{
-		FileInputStream fis = new FileInputStream(new File("src\\com\\myAssets\\resources\\config.properties"));
-		Properties props = new Properties();
-		props.load(fis);
+//		Properties props = new Properties();
+//		InputStream input = null;
+//		
+//		try
+//		{
+//			input = new FileInputStream("src/com/myAssets/resources/config.properties");
+//			props.load(input);
+//			
+//		}
+//		catch(IOException ex)
+//		{
+//			ex.printStackTrace();
+//		}
+//		finally
+//		{
+//			if (input != null)
+//			{
+//				try
+//				{
+//					input.close();
+//				}
+//				catch(IOException ex)
+//				{
+//					ex.printStackTrace();
+//				}
+//			}
+//			System.out.println(props.getProperty("username"));
+//			System.out.println(props.getProperty("password"));
 		
-		System.out.println("Properties File Loaded Successfully.............");
+//		String username = Tested.getValues("username");
+//		
+//		System.out.println(username);
 		
-		Properties prop = new Properties();
-		String smtpAuthValues = prop.getProperty("smtpAuthValues");
-		System.out.println(smtpAuthValues);
+		String username = PropUtil.getValues("username");
+		System.out.println(username);
 	}
+		
+
+//		}
 }
