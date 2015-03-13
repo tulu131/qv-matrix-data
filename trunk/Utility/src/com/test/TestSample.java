@@ -5,6 +5,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+
 import com.myAssets.utils.PropUtil;
 
 /**
@@ -57,7 +61,7 @@ class Tested
 }
 public class TestSample
 {
-	public static void main(String[] args)
+	public static void main(String[] args) throws JSONException
 	{
 //		Properties props = new Properties();
 //		InputStream input = null;
@@ -92,8 +96,15 @@ public class TestSample
 //		
 //		System.out.println(username);
 		
-		String username = PropUtil.getValues("username");
-		System.out.println(username);
+//		String username = PropUtil.getValues("username");
+		
+//		System.out.println(username);
+		
+		
+		String url = "https://sandbox.qa.virginamerica.com/api/v0/booking/lock-inventory-cabin/Post";
+		JSONParser json = new JSONParser();
+		JSONObject object = json.getJSONFromUrl(url);
+		String content = object.getString("Source");
 	}
 		
 
