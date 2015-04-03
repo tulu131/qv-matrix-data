@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  - DispatcherServlet application context for the image database.
+  -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+    <bean id="p"
+        			class="com.lara.beanClasses.Person">
+        <property name="pId"
+            					value="100"/>
+        <property name="name"
+            					value="Sailendra Narayan Jena"/>
+        <property name="age"
+            					value="32"/>
+        <property name="emailId"
+            					value="sailendra.n.jena@gmail.com"/>
+    </bean>
+    <bean id="p1"
+        			class="com.lara.beanClasses.Person1">
+        	<property name="pId"
+        	    					value="101"/>
+        	<property name="firstName"
+        	    					value="Sailendra"/>
+        	<property name="lastName"
+        	    					value="Jena"/>
+        	<property name="age"
+        	    					value="32"/>
+        	<property name="mailId"
+        	    					value="sailendra.n.jena@gmail.com"/>
+        	<property name="presentAdd"
+        	    					value="F-57/B, Street No-4, Laxmi Nagar, Delhi"/>
+        	<property name="perAdd"
+        	    					value="Kalinga Vihar, Chhend Colony, Rourkela, Sudargarh, Odisha"/>
+        	<property name="mobNo"
+        	    					value="9731728407"/>
+    </bean>
+    <bean id="p2"
+        			class="com.lara.beanClasses.Person2">
+        <property name="pId"
+            					value="102"/>
+        <property name="name"
+            					value="Sailendra Narayan Jena"/>
+        <property name="age"
+            					value="32"/>
+    </bean>
+    <bean id="address"
+        			class="com.lara.beanClasses.Address">
+        <property name="houseNo"
+            					value="LIG-80"/>
+        <property name="streetName"
+            					value="Kalinga Vihar, Chhend Colony"/>
+        <property name="cityName"
+            					value="Rourkela"/>
+        <property name="distName"
+            					value="Sundargarh"/>
+        <property name="stateName"
+            					value="Odisha"/>
+        <property name="countryName"
+            					value="India"/>
+        <property name="pinNo"
+            					value="769004"/>
+    </bean>
+    
+    <bean id="p3"
+        			class="com.lara.beanClasses.Person3">
+        <property name="pId"
+            					value="103"/>
+        <property name="firstName"
+            					value="Sailendra"/>
+        <property name="lastName"
+            					value="Jena"/>
+        <property name="age"
+            					value="32"/>
+        <property name="mailId">
+            <set>
+                <value>sailendra.n.jena@gmail.com</value>
+                <value>sailendra.jena@niit-tech.com</value>
+                <value>sailendra.jena@virginamerica.coom</value>
+                <value>sailendra.narayan.jena@gmail.com</value>
+                <value>sailendra.n.jena@hotmail.com</value>
+                <value>sailendra.narayan.jena@hotmail.com</value>
+                <value>sailendra.n.jena@</value>
+                <value></value>
+            </set>
+        </property>
+        <property name="mobNo">
+            <list>
+                <value>9731728407</value>
+                <value>9971359955</value>
+                <value>9717595888</value>
+            </list>
+        </property>
+        <property name="educations">
+            <map>
+                <entry key="be">B.Tech in Computer Science</entry>
+                <entry key="isc">Intermediate in Science Department</entry>
+                <entry key="tenth">Matriculation</entry>
+            </map>
+        </property>
+        <property name="jobs">
+            <props>
+                <prop key="job1">Data Entry</prop>
+                <prop key="job2">Java Trainer</prop>
+                <prop key="job3">Software Engineer in Java Technologies</prop>
+                <prop key="job4">Senior Software Engineer in Java Technologies</prop>
+            </props>
+        </property>
+        <property name="add"
+            					ref="address"/>
+    </bean>
+</beans>
