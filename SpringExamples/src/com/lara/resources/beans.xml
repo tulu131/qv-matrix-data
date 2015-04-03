@@ -7,6 +7,7 @@
 		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
+    <!--Person Class Details  -->
     <bean id="p"
         			class="com.lara.beanClasses.Person">
         <property name="pId"
@@ -18,6 +19,8 @@
         <property name="emailId"
             					value="sailendra.n.jena@gmail.com"/>
     </bean>
+    
+    <!--Person1 Class Details  -->
     <bean id="p1"
         			class="com.lara.beanClasses.Person1">
         	<property name="pId"
@@ -37,6 +40,8 @@
         	<property name="mobNo"
         	    					value="9731728407"/>
     </bean>
+    
+    <!--Person2 Class Details  -->
     <bean id="p2"
         			class="com.lara.beanClasses.Person2">
         <property name="pId"
@@ -46,6 +51,8 @@
         <property name="age"
             					value="32"/>
     </bean>
+    
+    <!-- Person3 Class Details -->
     <bean id="address"
         			class="com.lara.beanClasses.Address">
         <property name="houseNo"
@@ -95,9 +102,9 @@
         </property>
         <property name="educations">
             <map>
-                <entry key="be">B.Tech in Computer Science</entry>
-                <entry key="isc">Intermediate in Science Department</entry>
-                <entry key="tenth">Matriculation</entry>
+                <entry key="be" value="B.Tech in Computer Science"/>
+                <entry key="isc" value="Intermediate in Science Department"/>
+                <entry key="tenth" value="Matriculation"/>
             </map>
         </property>
         <property name="jobs">
@@ -110,5 +117,55 @@
         </property>
         <property name="add"
             					ref="address"/>
+    </bean>
+    
+    <!--Person4 Details  -->
+    <bean id="perAddress"
+        			class="com.lara.beanClasses.PermanentAddress">
+        <property name="houseNo" value="LIG-80"/>
+        <property name="streetName" value="Co-Operative Colony, Kaling Vihar, Chhend Colony"/>
+        <property name="cityName" value="Rourkela"/>
+        <property name="distName" value="Sundargarh"/>
+        <property name="stateName" value="Odisha"/>
+        <property name="countryName" value="India"/>
+        <property name="pinNo" value="769004"/>
+    </bean>
+    <bean id="preAddress"
+        			class="com.lara.beanClasses.PresentAddress">
+        <property name="houseNo" value="F-57/B"/>
+        <property name="streetName" value="street No-4"/>
+        <property name="cityName" value="Laxmi Nagar"/>
+        <property name="landMark" value="Near Mangal Bazaar, Opposite to V3S Mall and Maharaja Banquet Hall Lane"/>
+        <property name="stateName" value="Delhi"/>
+        <property name="countryName" value="India"/>
+        <property name="pinNo" value="110092"/>
+    </bean>
+    <bean id="address1"
+        			class="com.lara.beanClasses.Address1">
+        <property name="perAdd"
+            					ref="perAddress"/>
+        <property name="preAdd"
+            					ref="preAddress"/>
+    </bean>
+    <bean id="p4"
+        			class="com.lara.beanClasses.Person4">
+         <property name="pId" value="100"/>
+         <property name="firstName" value="Sailendra"/>
+         <property name="middleName" value="Narayan"/>
+         <property name="lastName" value="Jena"/>
+         <property name="age" value="32"/>
+         <property name="mailId">
+             <list>
+                 <value>sailendra.n.jena@gmail.com</value>
+                 <value>sailendra.narayan.jena@gmail.com</value>
+                 <value>sailendra.n.jena@hotmail.com</value>
+                 <value>sailendra.narayan.jena@hotmail.com</value>
+                 <value>sailendra.lina@live.com</value>
+                 <value>sailendra.lina@outlook.com</value>
+             </list>
+         </property>
+         <property name="mobNo" value="9731728407"/>
+         <property name="add" 
+             					ref="address1"/>
     </bean>
 </beans>
