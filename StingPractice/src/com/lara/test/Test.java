@@ -17,7 +17,7 @@ public class Test
 	 
 		  Test fileSearch = new Test();
 	 
-		  fileSearch.searchDirectory(new File("D:\\Dump Folders\\2015 Dump\\May\\11May2015\\OWDir1A1CMCRIntlGoldTBVcoTest\\backup\\BookingController.lockInventory"));
+		  fileSearch.searchDirectory(new File("D:\\Dump Folders\\2015 Dump\\May\\12May2015\\MCDirCon1A1C1IFCDomGoldTBAmexTest\\BookingController.purchase"));
 	 
 	  }
 	  public void searchDirectory(File directory)
@@ -73,8 +73,6 @@ public class Test
 							    }
 							    else
 							    {
-							    	System.out.println("Directory already renamed");
-							    	System.exit(0);
 							    }
 						}
 			 
