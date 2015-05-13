@@ -16,6 +16,7 @@ public class PropOutUtil
 	public static Properties props = null;
 
 
+	
 	static
 	{
 		file = new File("D:\\resources.properties");
@@ -40,13 +41,12 @@ public class PropOutUtil
 	public static String getValues(String key)
 	{
 		String value = props.getProperty(key);
-		
 		return value;
 	}
 	
 	public static void main(String[] args)
 	{
-		String username = PropOutUtil.getValues("attachFilePath");
+		String username = PropOutUtil.getValues("attachedFilePath");
 		System.out.println(username);
 	}
 }
