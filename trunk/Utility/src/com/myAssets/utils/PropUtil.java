@@ -22,7 +22,7 @@ public class PropUtil
 	
 	static
 	{
-		file = new File("src\\com\\myAssets\\resources\\config.properties");
+		file = new File("D:\\resources.properties");//new File("src\\com\\myAssets\\resources\\config.properties");
 		try
 		{
 			fileInput = new FileInputStream(file);
@@ -66,4 +66,10 @@ public class PropUtil
 	}
 
 
+	public static void main(String[] args)
+	{
+		String username = getValues("username");
+		
+		System.out.println(username);
+	}
 }
