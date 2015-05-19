@@ -87,7 +87,7 @@ public class ListFilesUtil {
  
         ListFilesUtil listFilesUtil = new ListFilesUtil();
  
-        final String directoryLinuxMac ="/Users/loiane/test";
+       // final String directoryLinuxMac ="/Users/loiane/test";
  
         //Windows directory example
         final String directoryWindows ="D:\\Dump Folders\\2014 Dump\\01Dec2014\\retrievePnr";
