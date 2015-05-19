@@ -14,10 +14,9 @@ public class Test
 	 
 	  public static void main(String[] args)
 	  {
-	 
 		  Test fileSearch = new Test();
 	 
-		  fileSearch.searchDirectory(new File("D:\\Dump Folders\\2015 Dump\\May\\12May2015\\MCDirCon1A1C1IFCDomGoldTBAmexTest\\BookingController.purchase"));
+		  fileSearch.searchDirectory(new File("D:\\Dump Folders\\2015 Dump\\May\\19May2015\\OWCon1AExitDomSilverTBVisaTest\\BookingController.lockInventory"));
 	 
 	  }
 	  public void searchDirectory(File directory)
