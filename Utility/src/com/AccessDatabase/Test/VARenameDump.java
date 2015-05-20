@@ -2,13 +2,17 @@ package com.AccessDatabase.Test;
 
 import java.io.File;
 
+import com.myAssets.utils.PropOutUtil;
+
 public class VARenameDump
 {
 	  public static void main(String[] args)
 	  {
+		  
 		  VARenameDump fileSearch = new VARenameDump();
-	 
-		  fileSearch.searchDirectory(new File("D:\\Dump Folders\\2015 Dump\\May\\19May2015\\OWCon1AExitDomSilverTBVisaTest\\BookingController.lockInventory"));
+		  String path = PropOutUtil.getValues("DumpRenameFolderPath");
+		  System.out.println(path);
+		  fileSearch.searchDirectory(new File(path));
 	 
 	  }
 	  public void searchDirectory(File directory)
@@ -17,6 +21,7 @@ public class VARenameDump
 			if (directory.isDirectory())
 			{
 			    search(directory);
+			    System.out.println("Folder Rename Successfull.........");
 			}
 			else
 			{
